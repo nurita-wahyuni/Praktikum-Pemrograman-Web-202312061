@@ -1,16 +1,17 @@
-<?php
-include 'koneksi.php';
+<?php 
+include 'koneksi.php'; 
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    
-    $query = "DELETE FROM produk WHERE id_produk='$id'";
-    
-    if (mysqli_query($conn, $query)) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($conn);
-    }
-}
-?>
+// Mengambil id dari URL
+$id = $_GET['id']; 
+
+// Query untuk menghapus data 
+$sql = "DELETE FROM karyawan WHERE id=$id"; 
+
+if ($conn->query($sql) === TRUE) { 
+  header("Location: index.php"); 
+  exit(); 
+} else { 
+  echo "Error deleting record: " . $conn->error; 
+} 
+
+$conn->close(); 
